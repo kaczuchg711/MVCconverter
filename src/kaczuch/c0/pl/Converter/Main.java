@@ -8,7 +8,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-
         ConverterView cv = new ConverterView();
         ConverterModel cm = new ConverterModel();
         ConverterController cc = new ConverterController(cm, cv);

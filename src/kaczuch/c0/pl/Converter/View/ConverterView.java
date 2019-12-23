@@ -11,8 +11,8 @@ public class ConverterView extends JFrame
 
     static class MainPanel extends JPanel
     {
-        private static final int WIDTH = 400;
-        private static final int HEIGHT = 200;
+        private static final int WIDTH = 600;
+        private static final int HEIGHT = 300;
 
         private InputPanel ip;
 
@@ -130,7 +130,7 @@ public class ConverterView extends JFrame
 
         public MainPanel()
         {
-//            this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+            this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
             this.setLocation(100, 100);
 
             ip = new InputPanel();
@@ -171,7 +171,6 @@ public class ConverterView extends JFrame
 
         this.panel = new MainPanel();
         this.add(panel);
-
         this.pack();
 
     }
@@ -181,9 +180,9 @@ public class ConverterView extends JFrame
         return panel;
     }
 
-    public double getInputValue()
+    public String getInput()
     {
-        return Double.parseDouble(this.getPanel().getIp().getTf1().getText());
+        return this.getPanel().getIp().getTf1().getText();
     }
 
     public void setResult(double result)
@@ -199,5 +198,10 @@ public class ConverterView extends JFrame
         {
             b.addActionListener(listenForCalcButtons);
         }
+    }
+
+    public void displayErrorMessage(String errorMessage)
+    {
+        JOptionPane.showMessageDialog(this, errorMessage);
     }
 }

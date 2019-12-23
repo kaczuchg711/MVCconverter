@@ -30,51 +30,56 @@ public class ConverterController
         {
             double input = 0;
 
-            input = conventerView.getInputValue();
-
-            double result = 0;
-            JButton source = (JButton) e.getSource();
-
-            String[] buttonsTexts =
-                    {
-                            "g to oz",
-                            "cm to inch",
-                            "l to gal",
-                            "oz to g",
-                            "inch to cm",
-                            "gal to l"
-                    };
-
-
-            ArrayList<String> t = new ArrayList<>(Arrays.asList(buttonsTexts));
-
-            String text = source.getText();
-
-            switch (t.indexOf(text))
+            try
             {
-                case 0:
-                    result = conventerModel.g_to_oz(input);
-                    break;
-                case 1:
-                    result = conventerModel.cm_to_inches(input);
-                    break;
-                case 2:
-                    result = conventerModel.l_to_gal(input);
-                    break;
-                case 3:
-                    result = conventerModel.oz_to_g(input);
-                    break;
-                case 4:
-                    result = conventerModel.inches_to_cm(input);
-                    break;
-                case 5:
-                    result = conventerModel.gal_to_l(input);
-                    break;
+                input = Double.valueOf(conventerView.getInput());
 
+                double result = 0;
+                JButton source = (JButton) e.getSource();
+
+                String[] buttonsTexts =
+                        {
+                                "g to oz",
+                                "cm to inch",
+                                "l to gal",
+                                "oz to g",
+                                "inch to cm",
+                                "gal to l"
+                        };
+
+                ArrayList<String> t = new ArrayList<>(Arrays.asList(buttonsTexts));
+
+                String text = source.getText();
+
+                switch (t.indexOf(text))
+                {
+                    case 0:
+                        result = conventerModel.g_to_oz(input);
+                        break;
+                    case 1:
+                        result = conventerModel.cm_to_inches(input);
+                        break;
+                    case 2:
+                        result = conventerModel.l_to_gal(input);
+                        break;
+                    case 3:
+                        result = conventerModel.oz_to_g(input);
+                        break;
+                    case 4:
+                        result = conventerModel.inches_to_cm(input);
+                        break;
+                    case 5:
+                        result = conventerModel.gal_to_l(input);
+                        break;
+                }
+
+                conventerView.setResult(result);
             }
+            catch (Exception e1)
+            {
 
-            conventerView.setResult(result);
-
+                conventerView.displayErrorMessage("You need to enter number");
+            }
         }
     }
 }
