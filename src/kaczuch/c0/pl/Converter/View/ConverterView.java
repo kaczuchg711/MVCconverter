@@ -2,6 +2,7 @@ package kaczuch.c0.pl.Converter.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ConverterView extends JFrame
@@ -85,6 +86,12 @@ public class ConverterView extends JFrame
                     this.add(b);
                 }
             }
+
+            public JButton[] getAllButtons()
+            {
+                JButton[] table = {this.b1, this.b2, this.b3, this.b4, this.b5, this.b6};
+                return table;
+            }
         }
 
         static private class LabelPanel extends JPanel
@@ -106,7 +113,6 @@ public class ConverterView extends JFrame
 
                 this.setLayout(gl);
 
-
                 for (JLabel l : list)
                 {
                     this.setBackground(new Color(0xD0D0D0));
@@ -122,10 +128,9 @@ public class ConverterView extends JFrame
 
         }
 
-
         public MainPanel()
         {
-            this.setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
+//            this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
             this.setLocation(100, 100);
 
             ip = new InputPanel();
@@ -150,6 +155,11 @@ public class ConverterView extends JFrame
         {
             return lp;
         }
+
+        public ButtonsPanel getBp()
+        {
+            return bp;
+        }
     }
 
     public ConverterView()
@@ -162,11 +172,8 @@ public class ConverterView extends JFrame
         this.panel = new MainPanel();
         this.add(panel);
 
-        panel = new MainPanel();
-
         this.pack();
 
-        this.setVisible(true);
     }
 
     public MainPanel getPanel()
@@ -177,10 +184,20 @@ public class ConverterView extends JFrame
     public double getInputValue()
     {
         return Double.parseDouble(this.getPanel().getIp().getTf1().getText());
-        }
+    }
 
     public void setResult(double result)
     {
         panel.getLp().getL1().setText(String.valueOf(result));
+    }
+
+    public void addConverterListener(ActionListener listenForCalcButtons)
+    {
+        JButton[] buttons = this.getPanel().getBp().getAllButtons();
+
+        for (JButton b : buttons)
+        {
+            b.addActionListener(listenForCalcButtons);
+        }
     }
 }
