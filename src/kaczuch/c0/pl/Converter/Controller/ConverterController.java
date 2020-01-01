@@ -77,7 +77,6 @@ public class ConverterController
             }
             catch (Exception e1)
             {
-
                 conventerView.displayErrorMessage("You need to enter number");
             }
         }
